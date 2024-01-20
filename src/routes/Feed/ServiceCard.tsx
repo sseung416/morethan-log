@@ -6,8 +6,6 @@ import { Emoji } from "src/components/Emoji"
 
 const ServiceCard: React.FC = () => {
   if (!CONFIG.projects) return null
-  if (CONFIG.projects.length == 0) return null
-  if (CONFIG.projects[0].name) return null
   return (
     <>
       <StyledTitle>
@@ -15,7 +13,6 @@ const ServiceCard: React.FC = () => {
       </StyledTitle>
       <StyledWrapper>
         {CONFIG.projects.map((project, idx) => (
-          project.name && project.href &&
           <a
             key={idx}
             href={`${project.href}`}
