@@ -6,6 +6,8 @@ import { Emoji } from "src/components/Emoji"
 
 const ServiceCard: React.FC = () => {
   if (!CONFIG.projects) return null
+  if (CONFIG.projects.length == 0) return null
+  if (CONFIG.projects[0].name) return null
   return (
     <>
       <StyledTitle>
