@@ -29,6 +29,19 @@ const PostDetail: React.FC<Props> = () => {
         {data.type[0] === "Post" && <PostHeader data={data} />}
         <div>
           <NotionRenderer recordMap={data.recordMap} />
+          <script>{`
+                console.log('전체 페이지 및 자원이 로드되었습니다.');
+                const elements = document.getElementsByClassName('notion-asset-wrapper-video');
+                console.log(elements);
+                for (let i = 0; i < elements.length; i++) {
+                  const divs = elements[i].getElementsByTagName("div");
+                  console.log(divs);
+                  if (divs.length > 0) {
+                    const videoDiv = divs[0];
+                    videoDiv.style.height = '100%';
+                  }
+                }
+          `}</script>
         </div>
         {data.type[0] === "Post" && (
           <>
