@@ -4,19 +4,32 @@ import { CONFIG } from "site.config"
 const Scripts: React.FC = () => (
   <>
   <Script id="dynamic-video">
-  {`window.addEventListener('load', function() {
-      console.log('전체 페이지 및 자원이 로드되었습니다.');
-      const elements = document.getElementsByClassName('notion-asset-wrapper-video');
-      console.log(elements);
-      for (let i = 0; i < elements.length; i++) {
-        const divs = elements[i].getElementsByTagName("div");
-        console.log(divs);
-        if (divs.length > 0) {
-          const videoDiv = divs[0];
-          videoDiv.style.height = '100%';
+  {`
+  document.addEventListener('scroll', () => {
+    let testA = document.querySelector('.notion-asset-wrapper-video')
+    
+    if(testA !== undefined && testA !== null) {
+        if(testA.childNodes[0].style.height !== '100%') {
+            testA.childNodes[0].style.height = '100%'
+            console.log('test')
         }
-      }
-    });
+    }
+})
+  
+  
+  // window.addEventListener('load', function() {
+  //     console.log('전체 페이지 및 자원이 로드되었습니다.');
+  //     const elements = document.getElementsByClassName('notion-asset-wrapper-video');
+  //     console.log(elements);
+  //     for (let i = 0; i < elements.length; i++) {
+  //       const divs = elements[i].getElementsByTagName("div");
+  //       console.log(divs);
+  //       if (divs.length > 0) {
+  //         const videoDiv = divs[0];
+  //         videoDiv.style.height = '100%';
+  //       }
+  //     }
+  //   });
   `}
   </Script>
     {CONFIG?.googleAnalytics?.enable === true && (
