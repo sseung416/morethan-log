@@ -13,6 +13,7 @@ const ServiceCard: React.FC = () => {
       </StyledTitle>
       <StyledWrapper>
         {CONFIG.projects.map((project, idx) => (
+          project.name && project.href &&
           <a
             key={idx}
             href={`${project.href}`}
