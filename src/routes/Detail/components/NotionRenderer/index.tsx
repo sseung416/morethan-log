@@ -123,4 +123,7 @@ const StyledWrapper = styled.div`
   .notion-page {
     padding: 0;
   }
+  .notion-asset-wrapper-video > div {
+    heigh: 100%;
+  }
 `
