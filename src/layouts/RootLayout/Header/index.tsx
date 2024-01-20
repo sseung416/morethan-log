@@ -15,7 +15,7 @@ const Header: React.FC<Props> = ({ fullWidth }) => {
         <Logo />
         <div className="nav">
           <ThemeToggle />
-          <NavBar />
+          {/* <NavBar /> about 부분 주석 처리*/} 
         </div>
       </div>
     </StyledWrapper>

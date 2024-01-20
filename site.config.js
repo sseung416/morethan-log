@@ -3,6 +3,7 @@ const CONFIG = {
   profile: {
     name: "Seungyeon",
     image: "/avatar.svg", // If you want to create your own notion avatar, check out https://notion-avatar.vercel.app
+    detailImage: "/detail-image.png",
     role: "android developer",
     bio: "잠은 무덤에서 자요",
     email: "choiseungyeon416@gmail.com",
@@ -12,8 +13,8 @@ const CONFIG = {
   },
   projects: [
     {
-      name: `morethan-log`,
-      href: "https://github.com/morethanmin/morethan-log",
+      name: "",
+      href: "",
     },
   ],
   // blog setting (required)
