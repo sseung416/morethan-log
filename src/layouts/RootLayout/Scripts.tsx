@@ -4,23 +4,38 @@ import { CONFIG } from "site.config"
 const Scripts: React.FC = () => (
   <>
     <Script id="video-height">{`
-      const scrollHandler = () => {
-  const videoWrapper = document.querySelector('.notion-asset-wrapper-video');
-  
-  if (videoWrapper !== undefined && videoWrapper !== null) {
-    if (videoWrapper.childNodes[0].style.height !== '100%') {
-      videoWrapper.childNodes[0].style.height = '100%';
-      console.log('test');
+      // 변경을 감지할 노드 선택
+      const targetNode = document.getElementById("__next");
 
-      // 스크롤 이벤트 리스너를 제거
-      document.removeEventListener('scroll', scrollHandler);
-    }
-  }
-};
+      // 감지 옵션 (감지할 변경)
+      const config = {attributes: true, childList: true, subtree: true };
 
-// 스크롤 이벤트 리스너를 등록
-document.addEventListener('scroll', scrollHandler);
+      // 변경 감지 시 실행할 콜백 함수
+      const callback = (mutationList, observer) => {
+        if (mutationList[0].type === "childList") { 
+          const videos = document.querySelectorAll('.notion-asset-wrapper-video')
 
+          for(let i = 0; i < videos.length; i++) {
+            const video = videos[i];
+            if (video !== undefined && video !== null) {
+              if (video.childNodes[0].style.height === '100%') {
+                break;
+              } else {
+                video.childNodes[0].style.height = '100%';
+              }
+            }
+          }
+        }
+      }
+
+      // 콜백 함수에 연결된 감지기 인스턴스 생성
+      const observer = new MutationObserver(callback);
+
+      // 설정한 변경의 감지 시작
+      observer.observe(targetNode, config)
+
+      // 이후 감지 중단 가능
+      // observer.disconnect();
     `}
     </Script>
     {CONFIG?.googleAnalytics?.enable === true && (
