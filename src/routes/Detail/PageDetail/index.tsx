@@ -10,6 +10,9 @@ const PageDetail: React.FC<Props> = () => {
   if (!data) return null
   return (
     <StyledWrapper>
+      <script>{`
+      document.addEventListener('scroll', scrollHandler);
+      `}</script>
       <NotionRenderer recordMap={data.recordMap} />
     </StyledWrapper>
   )
