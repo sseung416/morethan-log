@@ -30,17 +30,23 @@ const PostDetail: React.FC<Props> = () => {
         <div>
           <NotionRenderer recordMap={data.recordMap} />
           <script>{`
-                console.log('전체 페이지 및 자원이 로드되었습니다.');
-                const elements = document.getElementsByClassName('notion-asset-wrapper-video');
-                console.log(elements);
-                for (let i = 0; i < elements.length; i++) {
-                  const divs = elements[i].getElementsByTagName("div");
-                  console.log(divs);
-                  if (divs.length > 0) {
-                    const videoDiv = divs[0];
-                    videoDiv.style.height = '100%';
-                  }
-                }
+          document.addEventListener('DOMContentLoaded', function() {
+            const videoElements = document.getElementsByTagName('video');
+
+            // 비디오 태그들에 대해 반복
+            for (let i = 0; i < videoElements.length; i++) {
+              const videoElement = videoElements[i];
+
+              // 각 비디오 태그에 'loadeddata' 이벤트 리스너 추가
+              videoElement.addEventListener('loadeddata', function() {
+                console.log('비디오 로딩이 완료되었습니다.');
+
+                // 비디오 로딩이 완료되면 상위 div의 height을 100%로 설정
+                const videoWrapper = videoElement.parentNode;
+                videoWrapper.style.height = '100%';
+              });
+            }
+          });
           `}</script>
         </div>
         {data.type[0] === "Post" && (
