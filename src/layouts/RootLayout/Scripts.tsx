@@ -6,9 +6,10 @@ const Scripts: React.FC = () => (
   <Script id="dynamic-video">
   {`
     const elements = document.getElementsByClassName('notion-asset-wrapper-video');
-
+    console.log(elements);
     for (let i = 0; i < elements.length; i++) {
       const divs = elements[i].getElementsByTagName("div");
+      console.log(divs);
       if (divs.length > 0) {
         const videoDiv = divs[0];
         videoDiv.style.height = '100%';
