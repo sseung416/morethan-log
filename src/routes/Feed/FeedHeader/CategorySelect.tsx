@@ -15,6 +15,8 @@ const CategorySelect: React.FC<Props> = () => {
 
   const currentCategory = `${router.query.category || ``}` || DEFAULT_CATEGORY
 
+  const currentPostCount = data[currentCategory]
+
   const handleOptionClick = (category: string) => {
     router.push({
       query: {
@@ -26,7 +28,7 @@ const CategorySelect: React.FC<Props> = () => {
   return (
     <StyledWrapper>
       <div ref={dropdownRef} className="wrapper" onClick={handleOpen}>
-        {currentCategory} Posts <MdExpandMore />
+        {currentCategory} Posts ({currentPostCount}) <MdExpandMore />
       </div>
       {opened && (
         <div className="content">
