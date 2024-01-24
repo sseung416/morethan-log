@@ -2,5 +2,8 @@
 User-agent: *
 Allow: /
 
+# Host
+Host: https://sseung416-dev-note.vercel.app
+
 # Sitemaps
 Sitemap: https://sseung416-dev-note.vercel.app/sitemap.xml
